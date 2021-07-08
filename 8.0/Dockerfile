@@ -78,6 +78,8 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 # php.ini
 COPY php.ini /etc/php/8.0/cli/conf.d/99-sail.ini
 
+# 处理 \n\r 的问题
+RUN sed -i 's/\r//g' /usr/local/bin/start-container
 RUN chmod +x /usr/local/bin/start-container
 
 EXPOSE 8000
